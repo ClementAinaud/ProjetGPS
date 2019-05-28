@@ -20,6 +20,7 @@ and open the template in the editor.
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+        <div class="col-sm-6">
         <h3>Consulter historique ( menu déroulant peut-être)</h3>
         <br><br>
         
@@ -36,7 +37,7 @@ and open the template in the editor.
                             <?php
                                             foreach ($lesVilles as $ville) {
                                            ?>
-                            <option value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE;?></option>   
+                            <option value="<?php echo $ville->VILLEDEDEPART_TRONCON;?>"> <?php echo $ville->VILLEDEDEPART_TRONCON;?></option>   
                                                  
                             <?php
                                             } 
@@ -51,7 +52,7 @@ and open the template in the editor.
                             <?php
                                             foreach ($lesVilles as $ville) {
                                            ?>
-                            <option value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE;?></option>   
+                            <option value="<?php echo $ville->VILLEDARRIVEE_TRONCON;?>"> <?php echo $ville->VILLEDARRIVEE_TRONCON;?></option>   
                                                  
                             <?php
                                             } 
@@ -111,6 +112,46 @@ and open the template in the editor.
                     </div>
        <a href="http://localhost/ProjetGPS/index.php/Ctrl_Accueil/suiviTrajet"><input type="button" class="btn btn-info" name="demarer " value="Demarer la navigation"/></a> 
     </form>
+        </div>
+        
+       
+        
+        <div class="col-sm-4">  
+            <br>  <br>  <br>  <br>
+         <h1>Listes des villes</h1>
+
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        
+        <tr> 
+            
+              <th>Numero ville</th>
+              <th>Nom</th>
+              <th>Type de ville</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+           
+        </tr>    
+       
+        <?php 
+        
+        foreach($laVille as $ville){
+            echo "<tr>";
+           
+            echo"<td>".$ville->ID_VILLE."</td>";
+            echo"<td>".$ville->NOM_VILLE."</td>";
+            echo"<td>".$ville->TYPE_VILLE."</td>";
+            echo"<td>".$ville->LATITUDE_VILLE."</td>";
+            echo"<td>".$ville->LONGITUDE_VILLE."</td>";
+     
+            
+            
+            echo "</tr>";
+        }
+        ?>
+           
+    </table> 
+        
+        </div>
         
         
     </body>
