@@ -29,35 +29,87 @@ and open the template in the editor.
     <h1>Etape 1( choisir villes depart/arrivee et vérification des villes choisies </h1>
      
   
-            
+            <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleDepart">Ville de depart</label>
+                         <select  class="form-control" id="villeDepart" name="villeDepart">
+                            <?php
+                                            foreach ($lesVilles as $ville) {
+                                           ?>
+                            <option value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
                     <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="VilleArrivee">Ville d'arrivée</label>
-                        <input type="text" class="form-control" id="villeArrivee" name="villeArrivee">
+                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
+                            <?php
+                                            foreach ($lesVilles as $ville) {
+                                           ?>
+                            <option value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
                     </div>
                     </div>
+    
+      
     
     <h1>Etape 2 choisir les préférences </h1>
      <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
-                        <input type="text" class="form-control" id="typeChemin" name="typeChemin">
+                         <select  class="form-control" id="typeChemin" name="typeChemin">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
                     </div>
                     </div>
      <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="StationService">Station service(menu déroulant oui/non ?</label>
-                        <input type="text" class="form-control" id="stationService" name="stationService">
+                        <label for="touristique">Touristique</label>
+                        <select  class="form-control" id="touristique" name="touristique">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
                     </div>
                     </div>
    
     <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="radar">Radar  ( menu déroulant oui/non?)</label>
-                        <input type="text" class="form-control" id="radar" name="radar">
+                       <select  class="form-control" id="radar" name="radar">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
                     </div>
                     </div>
-       <a href="index.php/Ctrl_General/AfficherPracticiens"><input type="button" class="btn btn-info" name="demarer " value="Demarer la navigation"/></a> 
+       <a href="http://localhost/ProjetGPS/index.php/Ctrl_Accueil/suiviTrajet"><input type="button" class="btn btn-info" name="demarer " value="Demarer la navigation"/></a> 
     </form>
         
         
