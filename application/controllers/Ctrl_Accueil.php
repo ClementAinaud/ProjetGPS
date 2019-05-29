@@ -23,4 +23,10 @@ class Ctrl_Accueil extends CI_Controller{
        $data['lesVilles'] = $this->Model_Itineraire->getLesVilles();
         $this->load->view("v_SuiviTrajet",$data);
     }
+    
+    function parametres(){
+       $this->load->model('Model_Ville');
+       $data['laVille'] = $this->Model_Ville->getVille();
+        $this->load->view("v_Parametres",$data);
+    }
 }
