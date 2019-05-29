@@ -72,7 +72,7 @@ and open the template in the editor.
      </div> 
  </div>
         <div class="col-sm-4">   
-       
+           
             
          
             
