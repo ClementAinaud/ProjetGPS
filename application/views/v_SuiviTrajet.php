@@ -4,9 +4,10 @@
 $radar = $_REQUEST['radar'];
 $villeDepart=$_REQUEST['villeDepart'];
 $villeArrivee=$_REQUEST['villeArrivee'];
+$typeChemin=$_REQUEST['typeChemin'];
 echo "$villeDepart";
 echo "$radar";
-
+echo "$typeChemin";
 
 
 ?><!DOCTYPE html>
@@ -45,14 +46,12 @@ and open the template in the editor.
               <th>Vitesse moyenne</th>
               <th>Trajet touristique</th>
               <th>présence de radar</th>
-              <th>Payant</th>
-              <th>présence de tation service</th>
-              
+              <th><?php echo $typeChemin ?></th>
            
         </tr>    
        
         <?php 
-        
+        if($typeChemin =="court"){
         foreach($troncon as $ville){
             echo "<tr>";
            
@@ -69,7 +68,7 @@ and open the template in the editor.
             
             
             echo "</tr>";
-        }
+        }}else {print"44";}
         ?>
            
     </table> 

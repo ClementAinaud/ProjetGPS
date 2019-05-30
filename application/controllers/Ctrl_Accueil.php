@@ -24,6 +24,7 @@ class Ctrl_Accueil extends CI_Controller{
     public function suiviTrajet(){
         $villeDepart = $_GET['villeDepart'];
         $villeArrivee = $_GET['villeArrivee'];
+        $radar = $_GET ['radar'];
          $this->load->model('Model_Itineraire');
        $data['lesVilles'] = $this->Model_Itineraire->getLesVillesD();
        $data['troncon'] = $this->Model_Itineraire->getTroncon("$villeDepart","$villeArrivee");
