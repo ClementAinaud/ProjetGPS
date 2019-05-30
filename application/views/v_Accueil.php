@@ -22,5 +22,7 @@
     <div>
               <a href="index.php/Ctrl_Accueil/parametres"><input type="button" class="btn btn-info" name="recherche " value="parametrages"/></a> 
     </div>
+            <a href="Ctrl_Accueil/rechercheItineraire"><input type="button" class="btn btn-info" name="recherche " value="recherche"/></a>  
+            </div>
 </body>
 </html>
