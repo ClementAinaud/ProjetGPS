@@ -15,8 +15,28 @@ and open the template in the editor.
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         
-  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+  
+  <script type="text/javascript" >
+  function Smachine()  {
+  if(document.getElementById('arrivee').checked) {
+   
+    document.getElementById('Arrivee').style.display='block';
+    document.getElementById('Perdu').style.display='none';
+   
+  }
+  if(document.getElementById('perdu').checked) {
+    
+    document.getElementById('Arrivee').style.display='none';
+    document.getElementById('Perdu').style.display='block';
+    
+  }
+ 
+}
+  
+  
+  
+  </script>
     </head>
     <body>
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
@@ -66,5 +86,125 @@ and open the template in the editor.
         
         <input type="button"  value="Je suuis bien arrivée a destination " class="btn btn-success btn-block" />
         <input type="button"  value="Je me suis perdu " class="btn btn-success btn-block" />
+        
+        
+        
+        <div id="NomMach"></div>
+  <div id="Itype">
+      <div class="col-xs-6">
+    <h1>Reussite</h1>  <input name="Type" id="arrivee" type="radio" value="arrivee" checked="checked"  onclick="Smachine();" /> <br>
+      </div>
+      <div class="col-xs-6">
+     <h1>Echec</h1> <input name="Type" id="perdu" type="radio" value="perdu"  onclick="Smachine();" />
+    </div>
+  </div>
+  <div id="Arrivee" style="display:none;">
+      <h1>Felicitation </h1>
+  </div>
+        
+        
+        
+        
+        
+  <div id="Perdu" style="display:none;">
+   
+        
+        
+        
+        <form method="post">
+  
+    <h1>Etape 1( choisir villes depart/arrivee et vérification des villes choisies </h1>
+     
+  
+            <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleDepart">Ville de depart</label>
+                         <select  class="form-control" id="villeDepart" name="villeDepart">
+                            <?php
+                                            foreach ($lesVilles as $ville) {
+                                           ?>
+                            <option value="<?php echo $ville->VILLEDEDEPART_TRONCON;?>"> <?php echo $ville->VILLEDEDEPART_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleArrivee">Ville d'arrivée</label>
+                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
+                            <?php
+                                            foreach ($lesVilles as $ville) {
+                                           ?>
+                            <option value="<?php echo $ville->VILLEDARRIVEE_TRONCON;?>"> <?php echo $ville->VILLEDARRIVEE_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    
+      
+    
+    <h1>Etape 2 choisir les préférences </h1>
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
+                         <select  class="form-control" id="typeChemin" name="typeChemin">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="touristique">Touristique</label>
+                        <select  class="form-control" id="touristique" name="touristique">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+   
+    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
+                       <select  class="form-control" id="radar" name="radar">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+       <a href="http://localhost/ProjetGPS/index.php/Ctrl_Accueil/suiviTrajet"><input type="button" class="btn btn-info" name="demarer " value="Demarer la navigation"/></a> 
+    </form>
+        </div>
+    
+  </div>
+ 
+        
+        
+        
+        
     </body>
 </html>

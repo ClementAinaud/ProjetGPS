@@ -21,6 +21,12 @@ class Ctrl_Accueil extends CI_Controller{
     function suiviTrajet(){
          $this->load->model('Model_Itineraire');
        $data['lesVilles'] = $this->Model_Itineraire->getLesVilles();
+       
+       $this->load->model('Model_Ville');
+       $data['laVille'] = $this->Model_Ville->getVille();
+        
+        $this->load->model('Model_Preferences');
+        $data['lesPreferences'] = $this->Model_Preferences->getPreferences();
         $this->load->view("v_SuiviTrajet",$data);
     }
     
