@@ -13,7 +13,7 @@ $vehicule=$_REQUEST['vehicule'];
 echo "$villeDepart";
 echo "$radar";
 echo "$typeChemin";
-
+echo "$vehicule";   
 ?><!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -90,7 +90,7 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-                                        
+                                    echo "<td>".$ville->VITESSE_TRONCON.$ville->VITESSE_TRONCON."   </td>";
             
             
             echo "</tr>";
@@ -107,7 +107,6 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-                                        echo "<td>".$vitesse."</td>";
             
             
             echo "</tr>";
