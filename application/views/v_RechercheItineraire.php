@@ -182,10 +182,10 @@ and open the template in the editor.
                     </div>
                     </div>
     
-    <a href="http://localhost/SIO2/GPS2/index.php/Ctrl_Accueil/suiviTrajet "><input type="button" class="btn btn-info" name="demarer " value="Demarer la navigation"/></a> 
+
    
-    <input type="submit">
-    
+    <input type="submit" class="btn btn-info">
+     </div>
         </form>
         </div>
 <!--        <div class="col-sm-4">  

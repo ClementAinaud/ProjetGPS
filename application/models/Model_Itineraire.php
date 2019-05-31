@@ -49,6 +49,7 @@ WHERE   VILLEDEDEPART_TRONCON = '".$villeDepart."'
         $sql = $this->db->query('SELECT * FROM troncon');
         return $sql->result();
     }
+    
 }
    
 

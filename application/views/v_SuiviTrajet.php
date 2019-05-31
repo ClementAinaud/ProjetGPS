@@ -55,6 +55,7 @@ and open the template in the editor.
   </script>
     </head>
     <body>
+       
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
         <br>   <br>   <br>   <br>   <br>   <br>
          <!--<h1>Tableau des visiteurs</h1>-->
@@ -119,7 +120,477 @@ and open the template in the editor.
            
     </table> 
         
-        <input type="button"  value="Je suuis bien arrivée a destination " class="btn btn-success btn-block" />
-        <input type="button"  value="Je me suis perdu " class="btn btn-success btn-block" />
+        
+       
+        
+        <div id="NomMach"></div>
+  <div id="Itype">
+      <div class="radio">
+          <label> <input name="Type" id="arrivee" type="radio" value="arrivee" checked="checked"  onclick="Smachine();" />Fin du trajet </label> <br>
+      </div>
+      <div class="radio">
+          <label><input name="Type" id="perdu" type="radio" value="perdu"  onclick="Smachine();" /> Continuer le trajet</label>
+    </div>
+  </div>
+  <div id="Arrivee" style="display:none;">
+      <h1>Felicitaion vous etes arrivés a destination </h1>
+      <a href="../Ctrl_Accueil/etapes"><input type="button" class="btn btn-info" name="recherche " value="recherche"/></a>  
+  </div>
+        
+    <div id="Perdu" style="display:none;">
+        
+        <div class="col-sm-6"> 
+        <form method="GET" action="suiviTrajet">
+         
+    <h1>Etape 1( choisir villes depart/arrivee  </h1>
+     
+  
+    
+            <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleDepart">Ville de depart</label>
+                         <select  class="form-control" id="villeDepart" name="villeDepart">
+                            <?php
+                                            foreach ($lesVillesD as $ville) {
+                                           ?>
+                            <option name="<?php echo $ville->ID_VILLE;?>"
+                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>  
+                                           
+                            <?php
+                                            } 
+                           ?>  
+                        </select> 
+                    </div>
+            </div> <br> 
+   
+                    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleArrivee">Ville d'arrivée</label>
+                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
+                            <?php
+                                            foreach ($lesVillesA as $ville) {
+                                                
+                                           ?>
+                             
+                       
+                             -//
+                             <option name="<?php echo $ville->ID_VILLE;?>"
+                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>   
+                                                 
+                            <?php
+                            }
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    
+      
+    <h1>Etape 2 choisir le véhicule</h1>
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="vehicule">vehicule</label>
+                         <select  class="form-control" id="vehicule" name="vehicule">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+    
+      <h1>Etape 3 choisir les préférences </h1>
+     <div class="form-group row">
+       
+                         <div class="col-xs-6">
+                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
+                         <select  class="form-control" id="typeChemin" name="typeChemin">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row"  >
+       
+                         <div class="col-xs-6" style="display:none;">
+                        <label for="idTroncon">idTroncon</label>
+                         <select  class="form-control" id="idTroncon" name="idTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row" >
+       
+                         <div class="col-xs-6"style="display:none;">
+                        <label for="longueurTroncon">longueurTroncon</label>
+                         <select  class="form-control" id="longueurTroncon" name="longueurTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->LONGUEUR_TRONCON;?>"> <?php echo $troncon->LONGUEUR_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row" >
+       
+                         <div class="col-xs-6" style="display:none;">
+                        <label for="vitesseTroncon">vitesseTroncon</label>
+                         <select  class="form-control" id="vitesseTroncon" name="vitesseTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->VITESSE_TRONCON;?>"> <?php echo $troncon->VITESSE_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="touristique">Touristique</label>
+                        <select  class="form-control" id="touristique" name="touristique">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                            
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div> 
+   
+   <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="station">station</label>
+                        <select  class="form-control" id="station" name="station">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                            
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="payant">Payant  ( menu déroulant oui/non?)</label>
+                       <select  class="form-control" id="payant" name="payant">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+       <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
+                       <select  class="form-control" id="radar" name="radar">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    
+          
+    
+ 
+
+   
+      <input type="submit"  class="btn btn-info">
+        </form>
+            
+        
+     </div>
+        
+        <div class="col-sm-6"> 
+        <form method="post">
+         
+    <h1>Etape 1( choisir villes depart/arrivee  </h1>
+     
+  
+    
+            <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleDepart">Ville de depart</label>
+                         <select  class="form-control" id="villeDepart" name="villeDepart">
+                            <?php
+                                            foreach ($lesVillesD as $ville) {
+                                           ?>
+                            <option name="<?php echo $ville->ID_VILLE;?>"
+                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>  
+                                           
+                            <?php
+                                            } 
+                           ?>  
+                        </select> 
+                    </div>
+            </div> <br> 
+   
+                    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="VilleArrivee">Ville d'arrivée</label>
+                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
+                            <?php
+                                            foreach ($lesVillesA as $ville) {
+                                                
+                                           ?>
+                             
+                       
+                             -//
+                             <option name="<?php echo $ville->ID_VILLE;?>"
+                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>   
+                                                 
+                            <?php
+                            }
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    
+      
+    <h1>Etape 2 choisir le véhicule</h1>
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="vehicule">vehicule</label>
+                         <select  class="form-control" id="vehicule" name="vehicule">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+    
+      <h1>Etape 3 choisir les préférences </h1>
+     <div class="form-group row">
+       
+                         <div class="col-xs-6">
+                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
+                         <select  class="form-control" id="typeChemin" name="typeChemin">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row" >
+       
+                         <div class="col-xs-6">
+                        <label for="idTroncon">idTroncon</label>
+                         <select  class="form-control" id="idTroncon" name="idTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row" >
+       
+                         <div class="col-xs-6">
+                        <label for="longueurTroncon">longueurTroncon</label>
+                         <select  class="form-control" id="longueurTroncon" name="longueurTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->LONGUEUR_TRONCON;?>"> <?php echo $troncon->LONGUEUR_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+       <div class="form-group row" >
+       
+                         <div class="col-xs-6">
+                        <label for="vitesseTroncon">vitesseTroncon</label>
+                         <select  class="form-control" id="vitesseTroncon" name="vitesseTroncon">
+                            <?php
+                                            foreach ($toutTroncon as $troncon) {
+                                           ?>
+                            <option value="<?php echo $troncon->VITESSE_TRONCON;?>"> <?php echo $troncon->VITESSE_TRONCON;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+      
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="touristique">Touristique</label>
+                        <select  class="form-control" id="touristique" name="touristique">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                            
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div> 
+   
+   <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="station">station</label>
+                        <select  class="form-control" id="station" name="station">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
+                                            
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="payant">Payant  ( menu déroulant oui/non?)</label>
+                       <select  class="form-control" id="payant" name="payant">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+       <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
+                       <select  class="form-control" id="radar" name="radar">
+                            <?php
+                                            foreach ($lesPreferences as $preference) {
+                                           ?>
+                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+    
+          
+ 
+
+   
+      <input type="submit" name="insert" class="btn btn-info">
+        </form>
+             
+ <?php 
+                
+                if($this->input->post('insert') !=''){
+                   $idTroncon = $this->input->post('idTroncon');
+                   $villeDepart = $this->input->post('villeDepart'); 
+                   $villeArrivee = $this->input->post('villeArrivee');
+                   $longueurTroncon = $this->input->post('longueurTroncon');
+                   $vitesseTroncon = $this->input->post('vitesseTroncon');
+                   $touristique = $this->input->post('touristique');
+                   $station = $this->input->post('station');
+                   $payant = $this->input->post('payant');
+                   $radar = $this->input->post('radar');
+                  
+                   
+                   $data = array(
+                     'ID_ETAPE' => $idTroncon,
+                     'VILLEDEDEPART_ETAPE' =>$villeDepart,
+                     'VILLEDARRIVEE_ETAPE' =>$villeArrivee,
+                     'LONGUEUR_ETAPE' =>$longueurTroncon,
+                     'VITESSE_ETAPE' => $vitesseTroncon,
+                     'RADAR_ETAPE' =>$radar,
+                     'TOURISTIQUE_ETAPE' => $touristique, 
+                     'PAYANT_ETAPE'=>$payant,
+                     'STATIONSERVICE_ETAPE'=>$station,  
+                     'RADAR_ETAPE' =>  $radar,
+                       
+                      
+                   );
+                   $this->db->insert('etape',$data);
+                   header("refresh: 0;");
+                }
+                ?>  
+        
+     </div>
+        
+        
+        
+        
+        
+        
+        
+ </div>
+        
+
+    </div>
     </body>
 </html>
