@@ -120,7 +120,7 @@ and open the template in the editor.
                         </select>     
                     </div>
                     </div>
-<!--     <div class="form-group row">
+     <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="touristique">Touristique</label>
                         <select  class="form-control" id="touristique" name="touristique">
@@ -134,8 +134,8 @@ and open the template in the editor.
                            ?>  
                         </select>     
                     </div>
-                    </div>-->
-    
+                    </div> 
+   
    <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="station">station</label>

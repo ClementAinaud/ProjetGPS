@@ -90,7 +90,7 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-                                    echo "<td>".$ville->VITESSE_TRONCON.$ville->VITESSE_TRONCON."   </td>";
+                                    echo "<td>".$ville->VITESSE_TRONCON.'+'.$ville->VITESSE_TRONCON."   </td>";
             
             
             echo "</tr>";

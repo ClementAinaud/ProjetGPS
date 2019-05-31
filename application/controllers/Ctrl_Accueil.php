@@ -17,6 +17,9 @@ class Ctrl_Accueil extends CI_Controller{
         $this->load->model('Model_Preferences');
         $data['lesPreferences'] = $this->Model_Preferences->getPreferences();
         
+        $this->load->model('Model_Vehicule');
+        $data['lesvehicules'] = $this->Model_Vehicule->getVehicule();
+        
         $this->load->view("v_RechercheItineraire",$data);
         
     }
@@ -24,7 +27,7 @@ class Ctrl_Accueil extends CI_Controller{
         $villeDepart = $_GET['villeDepart'];
         $villeArrivee = $_GET['villeArrivee'];
         $radar = $_GET ['radar'];
-        $touristique = $_GET ['touristique'];
+//        $touristique = $_GET ['touristique'];
         $payant = $_GET ['payant'];
         $station = $_GET ['station'];
          $this->load->model('Model_Itineraire');
