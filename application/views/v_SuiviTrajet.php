@@ -13,7 +13,7 @@ $vehicule=$_REQUEST['vehicule'];
 echo "$villeDepart";
 echo "$radar";
 echo "$typeChemin";
-echo "$vehicule";   
+echo "$vehicule";
 ?><!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -33,32 +33,44 @@ and open the template in the editor.
         
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script type="text/javascript" >
-  function Smachine()  {
-  if(document.getElementById('arrivee').checked) {
    
-    document.getElementById('Arrivee').style.display='block';
-    document.getElementById('Perdu').style.display='none';
-   
-  }
-  if(document.getElementById('perdu').checked) {
-    
-    document.getElementById('Arrivee').style.display='none';
-    document.getElementById('Perdu').style.display='block';
-    
-  }
- 
-}
-    
-  
-  
-  </script>
     </head>
     <body>
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
         <br>   <br>   <br>   <br>   <br>   <br>
          <!--<h1>Tableau des visiteurs</h1>-->
-
+         <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+levehiculeid
+         
+       <tr> 
+            
+              <th id='idvehicule'>Id vehicule</th>
+              <th id='nomvehicule'>Nom vehicule</th>
+              <th id='typecarburant'>type carburant</th>
+              <th id='conso'>Consomation</th>
+              <th id='co2'> Co2</th>
+           
+        </tr>   
+         
+       
+         <?php 
+         
+         foreach($levehiculeid as $vehiculeid){
+            echo "<tr>";
+           
+            echo"<td>".$vehiculeid->ID_VEHICULE."</td>";
+               echo"<td>".$vehiculeid->NOM_VEHICULE ."</td>";
+                  echo"<td>".$vehiculeid->TYPECARBURANT_VEHICULE."</td>";
+                     echo"<td>".$vehiculeid->CONSOMATION_VEHICULE."</td>";
+                     echo "<td>".$vehiculeid->CO2_VEHICULE."</td>";
+            echo "</tr>";
+        }
+         
+         
+         
+         ?>
+          </table>
+         ----
     <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
@@ -72,7 +84,8 @@ and open the template in the editor.
               <th>présence de radar</th>
               <th>Payant</th>
               <th>Station</th>
-              <th>Consommation</th>
+              <th>Emission co2</th>
+              <th>consommation </th>
            
         </tr>    
        
@@ -90,7 +103,8 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-                                    echo "<td>".$ville->VITESSE_TRONCON.'+'.$ville->VITESSE_TRONCON."   </td>";
+                                         echo"<td>".($ville->LONGUEUR_TRONCON *$co2)/1000 .'kg'. "</td>";
+                                            echo"<td>".$ville->LONGUEUR_TRONCON * ($conso / 100 )  .'L'. "</td>";
             
             
             echo "</tr>";
@@ -107,7 +121,8 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-            
+                                         echo"<td>".($ville->LONGUEUR_TRONCON * $vehiculeid->CO2_VEHICULE )/1000 .'kg'. "</td>";
+                                            echo"<td>".$ville->LONGUEUR_TRONCON * ($vehiculeid->CONSOMATION_VEHICULE/ 100 )  .'L'. "</td>";
             
             echo "</tr>";
         }
