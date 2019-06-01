@@ -14,7 +14,13 @@ echo "$villeDepart";
 echo "$radar";
 echo "$typeChemin";
 echo "$vehicule";   
-?><!DOCTYPE html>
+?>
+<?php
+$date = date("d-m-Y");
+$heure = date("H:i");
+Print("Nous sommes le $date et il est $heure");
+?>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -22,7 +28,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Suivi pendant trajet</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -538,13 +544,25 @@ and open the template in the editor.
                            ?>  
                         </select>     
                     </div>
+                         </div>
+     
+      <input type="submit" name="insert"  class="btn btn-info">
+
+    
+    
                     </div>
+           
+                    </div>
+       
+                    
+      
+      
     
           
  
 
    
-      <input type="submit" name="insert" class="btn btn-info">
+      
         </form>
              
  <?php 
@@ -559,6 +577,8 @@ and open the template in the editor.
                    $station = $this->input->post('station');
                    $payant = $this->input->post('payant');
                    $radar = $this->input->post('radar');
+                
+                   
                   
                    
                    $data = array(
@@ -576,9 +596,51 @@ and open the template in the editor.
                       
                    );
                    $this->db->insert('etape',$data);
-                   header("refresh: 0;");
+                  
+                }
+                
+                ?>
+          <?php
+                if($this->input->post('insert') !=''){
+                   $idTroncon = $this->input->post('idTroncon');
+                   $villeDepart = $this->input->post('villeDepart'); 
+                   $villeArrivee = $this->input->post('villeArrivee');
+                   $longueurTroncon = $this->input->post('longueurTroncon');
+                   $vitesseTroncon = $this->input->post('vitesseTroncon');
+                   $touristique = $this->input->post('touristique');
+                   $station = $this->input->post('station');
+                   $payant = $this->input->post('payant');
+                   $radar = $this->input->post('radar');
+                   
+                   
+                   
+                   
+                  
+                   
+                   $data = array(
+                     'ID_HISTORIQUE' => $idTroncon,
+                     'DATE_HISTORIQUE' =>$date,  
+                     'HEURE_HISTORIQUE'=>$heure,  
+                     'VILLEDEDEPART_HISTORIQUE' =>$villeDepart,
+                     'VILLEARRIVEE_HISTORIQUE'=>$villeArrivee,
+                     'LONGUEUR_HISTORIQUE' => $longueurTroncon,
+                     'VITESSE_HISTORIQUE' =>$vitesseTroncon,
+                     'TOURISTIQUE_HISTORIQUE' =>$touristique,
+                     'RADAR_HISTORIQUE' =>$radar,
+                     'PAYANT_HISTORIQUE' =>$payant,
+                     'STATIONSERVICE_HISTORIQUE' =>$station,  
+                       
+                           
+                     
+                       
+                      
+                   );
+                   $this->db->insert('historique',$data);
+                  
                 }
                 ?>  
+            
+            
         
      </div>
         
