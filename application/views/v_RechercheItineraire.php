@@ -95,7 +95,7 @@ and open the template in the editor.
                             <?php
                                             foreach ($lesvehicules as $vehicule) {
                                            ?>
-                            <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
+                            <option value="<?php echo $vehicule->ID_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
                                                  
                             <?php
                                             } 
@@ -104,7 +104,7 @@ and open the template in the editor.
                     </div>
     
     
-    <h1>Etape 2 choisir les préférences </h1>
+    <h1>Etape 3 choisir les préférences </h1>
      <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
@@ -182,12 +182,12 @@ and open the template in the editor.
                     </div>
                     </div>
     
-
-   
-    <input type="submit" class="btn btn-info">
-     </div>
+                    
+    <input type="submit" class="btn btn-info"  value="Demarer la navigation">
+    
         </form>
         </div>
+    
 <!--        <div class="col-sm-4">  
             <br>  <br>  <br>  <br>
          <h1>Listes des villes</h1>

@@ -30,6 +30,7 @@ class Ctrl_Accueil extends CI_Controller{
         $touristique = $_GET ['touristique'];
         $payant = $_GET ['payant'];
         $station = $_GET ['station'];
+        $vehicule = $_GET ['vehicule'];
          $this->load->model('Model_Itineraire');
          
          $data['lesVillesD'] = $this->Model_Itineraire->getLesVillesD();
@@ -54,9 +55,16 @@ class Ctrl_Accueil extends CI_Controller{
         
         $this->load->model('Model_Preferences');
         $data['lesPreferences'] = $this->Model_Preferences->getPreferences();
+       $this->load->model('Model_Vehicule');
+        $data['lesvehicules'] = $this->Model_Vehicule->getVehicule();
         
-        $this->load->model('Model_Date');
-        $data['laDate'] = $this->Model_Date->getDate();
+        $this->load->model('Model_Vehicule');
+        $data['levehiculeid'] = $this->Model_Vehicule->getVehiculeinfo($vehicule);
+        
+         $this->load->view("v_SuiviTrajet",$data);
+       
+        
+       
      
  
 
@@ -82,5 +90,10 @@ class Ctrl_Accueil extends CI_Controller{
       $this->load->model('Model_Historique');
       $data['lesHistoriques'] = $this->Model_Historique->getHistorique();
       $this->load->view("v_Historique",$data);
+    }
+    function ajoutvehicule(){
+        $this->load->model('Model_Vehicule');
+       $data['leVehicule'] = $this->Model_Vehicule->getVehicule();
+        $this->load->view("v_ajoutvehicule",$data);
     }
 }

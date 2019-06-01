@@ -13,6 +13,8 @@ $vehicule=$_REQUEST['vehicule'];
 echo "$villeDepart";
 echo "$radar";
 echo "$typeChemin";
+echo "$vehicule";
+?><!DOCTYPE html>
 echo "$vehicule";   
 ?>
 <?php
@@ -65,7 +67,38 @@ and open the template in the editor.
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
         <br>   <br>   <br>   <br>   <br>   <br>
          <!--<h1>Tableau des visiteurs</h1>-->
-
+         <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+levehiculeid
+         
+       <tr> 
+            
+              <th id='idvehicule'>Id vehicule</th>
+              <th id='nomvehicule'>Nom vehicule</th>
+              <th id='typecarburant'>type carburant</th>
+              <th id='conso'>Consomation</th>
+              <th id='co2'> Co2</th>
+           
+        </tr>   
+         
+       
+         <?php 
+         
+         foreach($levehiculeid as $vehiculeid){
+            echo "<tr>";
+           
+            echo"<td>".$vehiculeid->ID_VEHICULE."</td>";
+               echo"<td>".$vehiculeid->NOM_VEHICULE ."</td>";
+                  echo"<td>".$vehiculeid->TYPECARBURANT_VEHICULE."</td>";
+                     echo"<td>".$vehiculeid->CONSOMATION_VEHICULE."</td>";
+                     echo "<td>".$vehiculeid->CO2_VEHICULE."</td>";
+            echo "</tr>";
+        }
+         
+         
+         
+         ?>
+          </table>
+         ----
     <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
@@ -79,7 +112,8 @@ and open the template in the editor.
               <th>présence de radar</th>
               <th>Payant</th>
               <th>Station</th>
-              <th>Consommation</th>
+              <th>Emission co2</th>
+              <th>consommation </th>
            
         </tr>    
        
@@ -97,7 +131,8 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-                                    echo "<td>".$ville->VITESSE_TRONCON.'+'.$ville->VITESSE_TRONCON."   </td>";
+                                         echo"<td>".($ville->LONGUEUR_TRONCON *$co2)/1000 .'kg'. "</td>";
+                                            echo"<td>".$ville->LONGUEUR_TRONCON * ($conso / 100 )  .'L'. "</td>";
             
             
             echo "</tr>";
@@ -114,7 +149,8 @@ and open the template in the editor.
                               echo"<td>".$ville->RADAR_TRONCON."</td>";
                                  echo"<td>".$ville->PAYANT_TRONCON."</td>";
                                     echo"<td>".$ville->STATIONSERVICE_TRONCON."</td>";
-            
+                                         echo"<td>".($ville->LONGUEUR_TRONCON * $vehiculeid->CO2_VEHICULE )/1000 .'kg'. "</td>";
+                                            echo"<td>".$ville->LONGUEUR_TRONCON * ($vehiculeid->CONSOMATION_VEHICULE/ 100 )  .'L'. "</td>";
             
             echo "</tr>";
         }
@@ -400,8 +436,24 @@ and open the template in the editor.
     <h1>Etape 2 choisir le véhicule</h1>
      <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="vehicule">vehicule</label>
-                         <select  class="form-control" id="vehicule" name="vehicule">
+                        <label for="idVehicule">Id du vehicule</label>
+                         <select  class="form-control" id="idVehicule" name="idVehicule">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->ID_VEHICULE;?>"> <?php echo $vehicule->ID_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="nomVehicule">Nom du proprietaire</label>
+                         <select  class="form-control" id="nomVehicule" name="nomVehicule">
                             <?php
                                             foreach ($lesvehicules as $vehicule) {
                                            ?>
@@ -413,6 +465,71 @@ and open the template in the editor.
                         </select>     
                          </div>
      </div>
+    
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="typeCarburant">Type de carburant</label>
+                         <select  class="form-control" id="typeCarburant" name="typeCarburant">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->TYPECARBURANT_VEHICULE;?>"> <?php echo $vehicule->TYPECARBURANT_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="consomation">consomation</label>
+                         <select  class="form-control" id="consomation" name="consomation">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->CONSOMATION_VEHICULE;?>"> <?php echo $vehicule->CONSOMATION_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+     <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="co2">Co2 vehicule</label>
+                         <select  class="form-control" id="co2" name="co2">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->CO2_VEHICULE;?>"> <?php echo $vehicule->CO2_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
+    <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="classe">classe</label>
+                         <select  class="form-control" id="classe" name="classe">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->CLASSE_VEHICULE;?>"> <?php echo $vehicule->CLASSE_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+    
     
     
       <h1>Etape 3 choisir les préférences </h1>
@@ -441,7 +558,7 @@ and open the template in the editor.
                             <?php
                                             foreach ($toutTroncon as $troncon) {
                                            ?>
-                            <option value="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
+                            <option name="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
                                                  
                             <?php
                                             } 
@@ -577,6 +694,12 @@ and open the template in the editor.
                    $station = $this->input->post('station');
                    $payant = $this->input->post('payant');
                    $radar = $this->input->post('radar');
+                   $nomVehicule->input->post('nom');
+                   $typeCarburant->input->post('typeCarburant');
+                   $consomation->input->post('consomation');
+                   $co2->input->post('co2');
+                   $classe->input->post('classe');
+                   
                 
                    
                   
@@ -592,6 +715,12 @@ and open the template in the editor.
                      'PAYANT_ETAPE'=>$payant,
                      'STATIONSERVICE_ETAPE'=>$station,  
                      'RADAR_ETAPE' =>  $radar,
+                      'NOM_ETAPE'=> $nomVehicule,
+                       'TYPECARBURANT_ETAPE' =>$typeCarburant,
+                       'CONSOMATION_ETAPE' =>$consomation,
+                       'CO2_ETAPE'=>$co2,
+                       'CLASSE_ETAPE'=>$classe,
+                      
                        
                       
                    );
@@ -611,7 +740,11 @@ and open the template in the editor.
                    $station = $this->input->post('station');
                    $payant = $this->input->post('payant');
                    $radar = $this->input->post('radar');
-                   
+                   $nomVehicule->input->post('nomVehicule');
+                   $typeCarburant->input->post('typeCarburant');
+                   $consomation->input->post('consomation');
+                   $co2->input->post('co2');
+                   $classe->input->post('classe');
                    
                    
                    
@@ -629,7 +762,11 @@ and open the template in the editor.
                      'RADAR_HISTORIQUE' =>$radar,
                      'PAYANT_HISTORIQUE' =>$payant,
                      'STATIONSERVICE_HISTORIQUE' =>$station,  
-                       
+                     'NOM_HISTORIQUE'=> $nomVehicule,
+                     'TYPECARBURANT_HISTORIQUE' =>$typeCarburant,
+                     'CONSOMATION_HISTORIQUE' =>$consomation,
+                     'CO2_HISTORIQUE'=>$co2,
+                     'CLASSE_HISTORIQUE'=>$classe,  
                            
                      
                        
