@@ -69,8 +69,6 @@ class Ctrl_Accueil extends CI_Controller{
  
 
         
-       
-                $this->load->view("v_SuiviTrajet",$data);
 
     }
     

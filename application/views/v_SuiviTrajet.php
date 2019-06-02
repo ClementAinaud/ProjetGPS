@@ -14,9 +14,9 @@ echo "$villeDepart";
 echo "$radar";
 echo "$typeChemin";
 echo "$vehicule";
+
 ?><!DOCTYPE html>
-echo "$vehicule";   
-?>
+
 <?php
 $date = date("d-m-Y");
 $heure = date("H:i");
@@ -30,8 +30,10 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        
         <title>Suivi pendant trajet</title>
         <meta charset="UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://localhost/GSB_Final-master/CSS/CSS.css"> 
@@ -55,20 +57,21 @@ and open the template in the editor.
     document.getElementById('Perdu').style.display='block';
     
   }
- 
+  $VILLEDEDEPART_TRONCON =(document.getElementById("myTable2").rows[1].cells.item(0).innerHTML);
+  $Detail = $DOM->getElementsByTagName('td');
 }
-    
   
-  
-  </script>
+</script>
+
     </head>
     <body>
-       
+       <form method="post">
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
         <br>   <br>   <br>   <br>   <br>   <br>
          <!--<h1>Tableau des visiteurs</h1>-->
+
          <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-levehiculeid
+
          
        <tr> 
             
@@ -85,7 +88,7 @@ levehiculeid
          
          foreach($levehiculeid as $vehiculeid){
             echo "<tr>";
-           
+           $IDVEHICULE_ETAPE = $vehiculeid->ID_VEHICULE;
             echo"<td>".$vehiculeid->ID_VEHICULE."</td>";
                echo"<td>".$vehiculeid->NOM_VEHICULE ."</td>";
                   echo"<td>".$vehiculeid->TYPECARBURANT_VEHICULE."</td>";
@@ -99,21 +102,21 @@ levehiculeid
          ?>
           </table>
          ----
-    <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="myTable2" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
             
-              <th>troncon</th>
-              <th>ville depart</th>
-              <th>ville arrivée</th>
-              <th>Nombres de kilomètres</th>
-              <th>Vitesse moyenne</th>
-              <th>Trajet touristique</th>
-              <th>présence de radar</th>
-              <th>Payant</th>
-              <th>Station</th>
-              <th>Emission co2</th>
-              <th>consommation </th>
+        <div id="ID_TRONCON" <th id="ID_TRONCON">troncon</th> </div>
+              <th id="VILLEDEDEPART_TRONCON">ville depart</th>
+              <th id="VILLEDARRIVEE_TRONCON">ville arrivée</th>
+              <th id="ID_TRONCON">Nombres de kilomètres</th>
+              <th id="VITESSE_TRONCON">Vitesse moyenne</th>
+              <th id="">Trajet touristique</th>
+              <th id="">présence de radar</th>
+              <th id="">Payant</th>
+              <th id="">Station</th>
+              <th id="co22">Emission co2</th>
+              <th id="conso2">consommation </th>
            
         </tr>    
        
@@ -121,8 +124,13 @@ levehiculeid
         if($typeChemin =="court"){
         foreach($troncon as $ville){
             echo "<tr>";
-           
-            echo"<td>".$ville->ID_TRONCON."</td>";
+            $ID_TRONCON= $ville->ID_TRONCON;
+           $VILLEDEDEPART_TRONCON = $ville->VILLEDEDEPART_TRONCON;
+           $VILLEDARRIVEE_TRONCON = $ville->VILLEDARRIVEE_TRONCON;
+           $LONGUEUR_ETAPE = $ville->LONGUEUR_TRONCON;
+           $CONSOMATION_ETAPE = $ville->LONGUEUR_TRONCON * ($vehiculeid->CONSOMATION_VEHICULE/ 100);
+           $CO2_ETAPE = ($ville->LONGUEUR_TRONCON * $vehiculeid->CO2_VEHICULE )/1000 ;
+            echo"<td name ='ID_TRONCON'>".$ville->ID_TRONCON."</td>";
                echo"<td>".$ville->VILLEDEDEPART_TRONCON."</td>";
                   echo"<td>".$ville->VILLEDARRIVEE_TRONCON."</td>";
                      echo"<td>".$ville->LONGUEUR_TRONCON."</td>";
@@ -139,8 +147,20 @@ levehiculeid
         }}else if($typeChemin =="rapide"){
             foreach($tronconR as $ville){
             echo "<tr>";
-           
-            echo"<td>".$ville->ID_TRONCON."</td>";
+//            VILLEDEDEPART_ETAPE' =>$VILLEDEDEPART_TRONCON,
+//                     'VILLEDARRIVEE_ETAPE' =>$villeArrivee,
+//                     'LONGUEUR_ETAPE' =>$longueurTroncon, 
+//                     'IDVEHICULE_ETAPE'=> $vehicule,
+//                       'CONSOMATION_ETAPE '=>$conso,
+//                       'CO2_ETAPE'=>$co2,
+//                           
+           $ID_TRONCON= $ville->ID_TRONCON;
+           $VILLEDEDEPART_TRONCON = $ville->VILLEDEDEPART_TRONCON;
+           $VILLEDARRIVEE_TRONCON = $ville->VILLEDARRIVEE_TRONCON;
+           $LONGUEUR_ETAPE = $ville->LONGUEUR_TRONCON;
+           $CONSOMATION_ETAPE = $ville->LONGUEUR_TRONCON * ($vehiculeid->CONSOMATION_VEHICULE/ 100);
+           $CO2_ETAPE = ($ville->LONGUEUR_TRONCON * $vehiculeid->CO2_VEHICULE )/1000 ;
+            echo"<td'>".$ville->ID_TRONCON."</td>";
                echo"<td>".$ville->VILLEDEDEPART_TRONCON."</td>";
                   echo"<td>".$ville->VILLEDARRIVEE_TRONCON."</td>";
                      echo"<td>".$ville->LONGUEUR_TRONCON."</td>";
@@ -157,12 +177,15 @@ levehiculeid
             
         } else  {
             echo "<script>alert(\"Pas de trajet dispo\")</script>";
+            
 }
+
+
         ?>
            
     </table> 
         
-        
+
        
         
         <div id="NomMach"></div>
@@ -171,7 +194,8 @@ levehiculeid
           <label> <input name="Type" id="arrivee" type="radio" value="arrivee" checked="checked"  onclick="Smachine();" />Fin du trajet </label> <br>
       </div>
       <div class="radio">
-          <label><input name="Type" id="perdu" type="radio" value="perdu"  onclick="Smachine();" /> Continuer le trajet</label>
+                      <a href="rechercheItineraire"><input type="button" class="btn btn-info" name="insert " value="CONTINUER"/></a>  
+
     </div>
   </div>
   <div id="Arrivee" style="display:none;">
@@ -183,490 +207,9 @@ levehiculeid
         
         <div class="col-sm-6"> 
         <form method="GET" action="suiviTrajet">
-         
-    <h1>Etape 1( choisir villes depart/arrivee  </h1>
-     
-  
-    
-            <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="VilleDepart">Ville de depart</label>
-                         <select  class="form-control" id="villeDepart" name="villeDepart">
-                            <?php
-                                            foreach ($lesVillesD as $ville) {
-                                           ?>
-                            <option name="<?php echo $ville->ID_VILLE;?>"
-                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>  
-                                           
-                            <?php
-                                            } 
-                           ?>  
-                        </select> 
-                    </div>
-            </div> <br> 
-   
-                    <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="VilleArrivee">Ville d'arrivée</label>
-                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
-                            <?php
-                                            foreach ($lesVillesA as $ville) {
-                                                
-                                           ?>
-                             
-                       
-                             -//
-                             <option name="<?php echo $ville->ID_VILLE;?>"
-                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>   
-                                                 
-                            <?php
-                            }
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-    
-      
-    <h1>Etape 2 choisir le véhicule</h1>
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="vehicule">vehicule</label>
-                         <select  class="form-control" id="vehicule" name="vehicule">
-                            <?php
-                                            foreach ($lesvehicules as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-    
-    
-      <h1>Etape 3 choisir les préférences </h1>
-     <div class="form-group row">
-       
-                         <div class="col-xs-6">
-                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
-                         <select  class="form-control" id="typeChemin" name="typeChemin">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row"  >
-       
-                         <div class="col-xs-6" style="display:none;">
-                        <label for="idTroncon">idTroncon</label>
-                         <select  class="form-control" id="idTroncon" name="idTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option value="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row" >
-       
-                         <div class="col-xs-6"style="display:none;">
-                        <label for="longueurTroncon">longueurTroncon</label>
-                         <select  class="form-control" id="longueurTroncon" name="longueurTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option value="<?php echo $troncon->LONGUEUR_TRONCON;?>"> <?php echo $troncon->LONGUEUR_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row" >
-       
-                         <div class="col-xs-6" style="display:none;">
-                        <label for="vitesseTroncon">vitesseTroncon</label>
-                         <select  class="form-control" id="vitesseTroncon" name="vitesseTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option value="<?php echo $troncon->VITESSE_TRONCON;?>"> <?php echo $troncon->VITESSE_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="touristique">Touristique</label>
-                        <select  class="form-control" id="touristique" name="touristique">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
-                                            
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div> 
-   
-   <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="station">station</label>
-                        <select  class="form-control" id="station" name="station">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
-                                            
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-    <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="payant">Payant  ( menu déroulant oui/non?)</label>
-                       <select  class="form-control" id="payant" name="payant">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-       <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
-                       <select  class="form-control" id="radar" name="radar">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-    
-          
-    
- 
-
-   
-      <input type="submit"  class="btn btn-info">
-        </form>
-            
-        
-     </div>
-        
-        <div class="col-sm-6"> 
-        <form method="post">
-         
-    <h1>Etape 1( choisir villes depart/arrivee  </h1>
-     
-  
-    
-            <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="VilleDepart">Ville de depart</label>
-                         <select  class="form-control" id="villeDepart" name="villeDepart">
-                            <?php
-                                            foreach ($lesVillesD as $ville) {
-                                           ?>
-                            <option name="<?php echo $ville->ID_VILLE;?>"
-                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>  
-                                           
-                            <?php
-                                            } 
-                           ?>  
-                        </select> 
-                    </div>
-            </div> <br> 
-   
-                    <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="VilleArrivee">Ville d'arrivée</label>
-                         <select  class="form-control" id="villeArrivee" name="villeArrivee">
-                            <?php
-                                            foreach ($lesVillesA as $ville) {
-                                                
-                                           ?>
-                             
-                       
-                             -//
-                             <option name="<?php echo $ville->ID_VILLE;?>"
-                                value="<?php echo $ville->ID_VILLE;?>"> <?php echo $ville->NOM_VILLE ;?></option>   
-                                                 
-                            <?php
-                            }
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-    
-      
-    <h1>Etape 2 choisir le véhicule</h1>
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="idVehicule">Id du vehicule</label>
-                         <select  class="form-control" id="idVehicule" name="idVehicule">
-                            <?php
-                                            foreach ($lesvehicules  as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->ID_VEHICULE;?>"> <?php echo $vehicule->ID_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-    
-    
-  <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="nomVehicule">nom du vehicule</label>
-                         <select  class="form-control" id="nomVehicule" name="nomVehicule">
-                            <?php
-                                            foreach ($lesvehicules  as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-    
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="typeCarburant">Type de carburant</label>
-                         <select  class="form-control" id="typeCarburant" name="typeCarburant">
-                            <?php
-                                            foreach ($lesvehicules  as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->TYPECARBURANT_VEHICULE;?>"> <?php echo $vehicule->TYPECARBURANT_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-    
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="consomation">consomation</label>
-                         <select  class="form-control" id="consomation" name="consomation">
-                            <?php
-                                            foreach ($lesvehicules  as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->CONSOMATION_VEHICULE;?>"> <?php echo $vehicule->CONSOMATION_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
     
   
-    
-    <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="classe">classe</label>
-                         <select  class="form-control" id="classe" name="classe">
-                            <?php
-                                            foreach ($lesvehicules  as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->CLASSE_VEHICULE;?>"> <?php echo $vehicule->CLASSE_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-    
-    
-    
-      <h1>Etape 3 choisir les préférences </h1>
-     <div class="form-group row">
-       
-                         <div class="col-xs-6">
-                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
-                         <select  class="form-control" id="typeChemin" name="typeChemin">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->typeChemin;?>"> <?php echo $preference->typeChemin;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row" >
-       
-                         <div class="col-xs-6">
-                        <label for="idTroncon">idTroncon</label>
-                         <select  class="form-control" id="idTroncon" name="idTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option name="<?php echo $troncon->ID_TRONCON;?>"> <?php echo $troncon->ID_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row" >
-       
-                         <div class="col-xs-6">
-                        <label for="longueurTroncon">longueurTroncon</label>
-                         <select  class="form-control" id="longueurTroncon" name="longueurTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option value="<?php echo $troncon->LONGUEUR_TRONCON;?>"> <?php echo $troncon->LONGUEUR_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-       <div class="form-group row" >
-       
-                         <div class="col-xs-6">
-                        <label for="vitesseTroncon">vitesseTroncon</label>
-                         <select  class="form-control" id="vitesseTroncon" name="vitesseTroncon">
-                            <?php
-                                            foreach ($toutTroncon as $troncon) {
-                                           ?>
-                            <option value="<?php echo $troncon->VITESSE_TRONCON;?>"> <?php echo $troncon->VITESSE_TRONCON;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-      
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="touristique">Touristique</label>
-                        <select  class="form-control" id="touristique" name="touristique">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
-                                            
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div> 
-   
-   <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="station">station</label>
-                        <select  class="form-control" id="station" name="station">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->touristique;?>"> <?php echo $preference->touristique;?></option>   
-                                            
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-    <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="payant">Payant  ( menu déroulant oui/non?)</label>
-                       <select  class="form-control" id="payant" name="payant">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                    </div>
-       <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
-                       <select  class="form-control" id="radar" name="radar">
-                            <?php
-                                            foreach ($lesPreferences as $preference) {
-                                           ?>
-                            <option value="<?php echo $preference->radar;?>"> <?php echo $preference->radar;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                    </div>
-                         </div>
-      
-         <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="co2">Co2 vehicule</label>
-                         <select  class="form-control" id="co2" name="co2">
-                            <?php
-                                            foreach ($lesvehicules as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->CO2_VEHICULE;?>"> <?php echo $vehicule->CO2_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
-  
-      <input type="submit" name="insert"  class="btn btn-info">
+      <a href="rechercheItineraire"><input type="submit" name="insert"  class="btn btn-info"></a>
 
     
     
@@ -679,52 +222,38 @@ levehiculeid
       
     
           
- 
+            <td><input type="submit" name="insert" value="Save Data"/></td>
 
    
       
         </form>
-             
+            
+            
+           
+            
+            
+            
  <?php 
                 
+              
+ 
                 if($this->input->post('insert') !=''){
-                   $idTroncon = $this->input->post('idTroncon');
-                   $villeDepart = $this->input->post('villeDepart'); 
-                   $villeArrivee = $this->input->post('villeArrivee');
-                   $longueurTroncon = $this->input->post('longueurTroncon');
-                   $vitesseTroncon = $this->input->post('vitesseTroncon');
-                   $touristique = $this->input->post('touristique');
-                   $station = $this->input->post('station');
-                   $payant = $this->input->post('payant');
-                   $radar = $this->input->post('radar');
+                    $idTroncon = $this->input->post('ID_TRONCON');
+                   $villeDepart = $this->input->post('VILLEDEDEPART_TRONCON'); 
+                   $villeArrivee = $this->input->post('VILLEDARRIVEE_TRONCON');
+                   $longueurTroncon = $this->input->post('LONGUEUR_TRONCON');
                    $idVehicule = $this->input->post('idVehicule');
-                   $nomVehicule->input->post('nomVehicule');
-          //         $typeCarburant->input->post('typeCarburant');
-            //       $consomation->input->post('consomation');
-                //   $co2->input->post('co2');
-             //      $classe->input->post('classe');
-                   
-                
-                   
-                  
-                   
+                   $conso = $this->input->post('conso2');
+                   $co2 = $this->input->post ('co22');
+          
                    $data = array(
-                     'ID_ETAPE' => $idTroncon,
-                     'VILLEDEDEPART_ETAPE' =>$villeDepart,
-                     'VILLEDARRIVEE_ETAPE' =>$villeArrivee,
-                     'LONGUEUR_ETAPE' =>$longueurTroncon,
-                     'VITESSE_ETAPE' => $vitesseTroncon,
-                     'RADAR_ETAPE' =>$radar,
-                     'TOURISTIQUE_ETAPE' => $touristique, 
-                     'PAYANT_ETAPE'=>$payant,
-                     'STATIONSERVICE_ETAPE'=>$station,  
-                     'RADAR_ETAPE' =>  $radar, 
-                     'IDVEHICULE_ETAPE'=> $idVehicule,
-                     'NOM_ETAPE' => $nomVehicule, 
-      //               'TYPECARBURANT_ETAPE' =>$typeCarburant,
-    //                 'CONSOMATION_ETAPE' =>$consomation,
-               //        'CO2_ETAPE'=>$co2,
-              //        'CLASSE_ETAPE'=>$classe,
+                     'ID_TRONCON ' => $ID_TRONCON,
+                     'VILLEDEDEPART_ETAPE' =>$VILLEDEDEPART_TRONCON,
+                     'VILLEDARRIVEE_ETAPE' =>$VILLEDARRIVEE_TRONCON,
+                     'LONGUEUR_ETAPE' =>$LONGUEUR_ETAPE, 
+                     'IDVEHICULE_ETAPE'=> $vehicule,
+                       'CONSOMATION_ETAPE '=>$CONSOMATION_ETAPE,
+                       'CO2_ETAPE'=>$CO2_ETAPE,
                      
                        
                       
@@ -736,42 +265,26 @@ levehiculeid
                 ?>
           <?php
                 if($this->input->post('insert') !=''){
-                   $idTroncon = $this->input->post('idTroncon');
-                   $villeDepart = $this->input->post('villeDepart'); 
-                   $villeArrivee = $this->input->post('villeArrivee');
-                   $longueurTroncon = $this->input->post('longueurTroncon');
-                   $vitesseTroncon = $this->input->post('vitesseTroncon');
-                   $touristique = $this->input->post('touristique');
-                   $station = $this->input->post('station');
-                   $payant = $this->input->post('payant');
-                   $radar = $this->input->post('radar');
- //                  $nomVehicule->input->post('nomVehicule');
-//                   $typeCarburant->input->post('typeCarburant');
-//                   $consomation->input->post('consomation');
-//                   $co2->input->post('co2');
-//                   $classe->input->post('classe');
-                   
+                   $idTroncon = $this->input->post('ID_TRONCON');
+                   $villeDepart = $this->input->post('VILLEDEDEPART_TRONCON'); 
+                   $villeArrivee = $this->input->post('VILLEDARRIVEE_TRONCON');
+                   $longueurTroncon = $this->input->post('LONGUEUR_TRONCON');
+                   $conso = $this->input->post('conso2');
+                   $co2 = $this->input->post ('co22');
                    
                    
                   
                    
                    $data = array(
-                     'ID_HISTORIQUE' => $idTroncon,
+                     'ID_TRONCON' => $ID_TRONCON,
                      'DATE_HISTORIQUE' =>$date,  
                      'HEURE_HISTORIQUE'=>$heure,  
-                     'VILLEDEDEPART_HISTORIQUE' =>$villeDepart,
-                     'VILLEARRIVEE_HISTORIQUE'=>$villeArrivee,
-                     'LONGUEUR_HISTORIQUE' => $longueurTroncon,
-                     'VITESSE_HISTORIQUE' =>$vitesseTroncon,
-                     'TOURISTIQUE_HISTORIQUE' =>$touristique,
-                     'RADAR_HISTORIQUE' =>$radar,
-                     'PAYANT_HISTORIQUE' =>$payant,
-                     'STATIONSERVICE_HISTORIQUE' =>$station,  
-//                     'NOM_HISTORIQUE'=> $nomVehicule,
-//                     'TYPECARBURANT_HISTORIQUE' =>$typeCarburant,
-//                     'CONSOMATION_HISTORIQUE' =>$consomation,
-//                     'CO2_HISTORIQUE'=>$co2,
-//                     'CLASSE_HISTORIQUE'=>$classe,  
+                     'VILLEDEDEPART_HISTORIQUE' =>$VILLEDEDEPART_TRONCON,
+                     'VILLEARRIVEE_HISTORIQUE'=>$VILLEDARRIVEE_TRONCON,
+                     'LONGUEUR_HISTORIQUE' => $LONGUEUR_ETAPE,
+                       'ID_VEHICULE'=> $vehicule,
+                     'CONSOMATION_HISTORIQUE' =>$CONSOMATION_ETAPE,
+                     'CO2_HISTORIQUE'=>$CO2_ETAPE,
                            
                      
                        
@@ -794,7 +307,27 @@ levehiculeid
         
  </div>
         
-
-    </div>
+<table id=maTable>
+<tr>
+<th>Identifiant</th>
+<th>Resultat</th>
+</tr>
+<tr>
+<td>123</td>
+<td>55</td>
+</tr>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
     </body>
 </html>
