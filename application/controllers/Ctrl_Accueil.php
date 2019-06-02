@@ -75,13 +75,22 @@ class Ctrl_Accueil extends CI_Controller{
  public   function parametres(){
        $this->load->model('Model_Ville');
        $data['laVille'] = $this->Model_Ville->getVille();
+       
+        $this->load->model('Model_Itineraire');
+      $data['lesTroncons']=$this->Model_Itineraire->getLesVilles();
+      
+      $this->load->model('Model_Route');
+      $data['laRoute'] = $this->Model_Route->getRoute();
         $this->load->view("v_Parametres",$data);
     }
     
   public   function etapes(){
       $this->load->model('Model_Etapes');
       $data['lesEtapes'] = $this->Model_Etapes->getEtapes();
+     
       $this->load->view("v_Etapes",$data);
+      
+      
     }
     
    public function historique(){
