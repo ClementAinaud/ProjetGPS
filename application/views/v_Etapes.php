@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Etapes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <link rel="stylesheet" href="http://localhost/GSB_Final-master/CSS/CSS.css"> 
@@ -24,21 +24,22 @@ and open the template in the editor.
             <div class="col-sm-6">
         <div id="partieGauche"> 
 <!--        <div style="overflow:auto;height:570px;">-->
+
  <h1>Listes des etapes</h1>
 
     <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
             
-              <th>Id Etape</th>
-              <th>Ville de depart</th>
-              <th>Ville d'arrivee</th>
-              <th>Longueur</th>
-              <th>vitesse</th>
-               <th>Touristique</th>
-                <th>Radar</th>
-                 <th>Payant</th>
-                  <th>sation service</th>
+              <th>Id de l'Etape</th>
+              <th>Id du Troncon</th>
+              <th>Ville d'arrivée</th>
+              <th>Ville de depart </th>
+              <th>Longueurde l' etape</th>
+               <th>Id du vehicule</th>
+               <th>consomation</th>
+                 <th>Co2 émis</th>
+                 
            
         </tr>    
        
@@ -48,14 +49,14 @@ and open the template in the editor.
             echo "<tr>";
            
             echo"<td>".$etape->ID_ETAPE."</td>";
+            echo"<td>".$etape->ID_TRONCON."</td>";
             echo"<td>".$etape->VILLEDEDEPART_ETAPE."</td>";
             echo"<td>".$etape->VILLEDARRIVEE_ETAPE."</td>";
             echo"<td>".$etape->LONGUEUR_ETAPE."</td>";
-            echo"<td>".$etape->VITESSE_ETAPE."</td>";
-            echo"<td>".$etape->TOURISTIQUE_ETAPE."</td>";
-            echo"<td>".$etape->RADAR_ETAPE."</td>";
-            echo"<td>".$etape->PAYANT_ETAPE."</td>";
-            echo"<td>".$etape->STATIONSERVICE_ETAPE."</td>";
+            echo"<td>".$etape->IDVEHICULE_ETAPE."</td>";
+            echo"<td>".$etape->CONSOMATION_ETAPE."</td>";
+             echo"<td>".$etape->CO2_ETAPE."</td>";
+            
      
             
             
@@ -65,17 +66,51 @@ and open the template in the editor.
            
     </table> 
               
- 
-        
-        
-        <br> <br>   
+ <form action="rechercheItineraire" method="post">
+     <div class="form-group row" style="display:none;">
+                         <div class="col-xs-6">
+                        <label for="idEtape">idEtape</label>
+                   
+                       
+                         <select  class="form-control" id="idEtape" name="idEtape">
+                            <?php
+                                            foreach ($lesEtapes as $etape) {
+                                           ?>
+                            <option value="<?php echo $etape->ID_ETAPE;?>"> <?php echo $etape->ID_ETAPE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+                    
+     
        
-       <ul class="pager">
-  <li class="previous"><a href="http://localhost/ProjetGPSFinal/">Revenir a l'acceuil GPS</a></li>
-  
-</ul>
+<div class="form-group row" id="delete">
+               <div class="col-xs-4">
+               <input  type="submit" name="delete" value="Supprimer" class="btn btn-danger btn-block" />
+              
+           </div>
+</div>
+     
+ </form>
+ 
+       <?php 
+                
+                if($this->input->post('delete') !=''){
+                   
+                 $idEtape = $this->input->post('idEtape'); 
+                 $data = array(
+                     'ID_ETAPE' => $idEtape,
+                    
+                    );
+                 
+                   $this->db->delete('etape', array('ID_ETAPE' => $idEtape));
+                   header("refresh: 0;");
+                }
+                ?>  
    
-        <br> <br>
            
      </div> 
  </div>

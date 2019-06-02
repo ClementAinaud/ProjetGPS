@@ -18,8 +18,8 @@ and open the template in the editor.
     <body>
    <body>
    
-            <div class="col-sm-6">
-        <div id="partieGauche"> 
+            <div class="col-sm-10">
+        
 <!--        <div style="overflow:auto;height:570px;">-->
  <h1>Listes de l'historique</h1>
 
@@ -28,16 +28,17 @@ and open the template in the editor.
         <tr> 
             
               <th>Id Historique</th>
+             <th>Id Troncon</th>
               <th>Date</th>
               <th>Heure</th>
               <th>Ville de depart</th>
               <th>Ville d'arrivee</th>
               <th>Longueur</th>
-              <th>vitesse</th>
-               <th>Touristique</th>
-                <th>Radar</th>
-                 <th>Payant</th>
-                  <th>sation service</th>
+              <th>Id du vehicule</th>
+               <th>Consomation historique</th>
+                <th>Co2 emis</th>
+                
+             
            
         </tr>    
        
@@ -47,16 +48,16 @@ and open the template in the editor.
             echo "<tr>";
            
             echo"<td>".$historique->ID_HISTORIQUE."</td>";
+            echo"<td>".$historique->ID_TRONCON."</td>";
             echo"<td>".$historique->DATE_HISTORIQUE."</td>";
             echo"<td>".$historique->HEURE_HISTORIQUE."</td>";
             echo"<td>".$historique->VILLEDEDEPART_HISTORIQUE."</td>";
             echo"<td>".$historique->VILLEARRIVEE_HISTORIQUE."</td>";
             echo"<td>".$historique->LONGUEUR_HISTORIQUE."</td>";
-            echo"<td>".$historique->VITESSE_HISTORIQUE."</td>";
-            echo"<td>".$historique->TOURISTIQUE_HISTORIQUE."</td>";
-            echo"<td>".$historique->RADAR_HISTORIQUE."</td>";
-            echo"<td>".$historique->PAYANT_HISTORIQUE."</td>";
-            echo"<td>".$historique->STATIONSERVICE_HISTORIQUE."</td>";
+            echo"<td>".$historique->ID_VEHICULE."</td>";
+            echo"<td>".$historique->CONSOMATION_HISTORIQUE."</td>";
+            echo"<td>".$historique->CO2_HISTORIQUE."</td>";
+            
      
             
             
@@ -66,7 +67,49 @@ and open the template in the editor.
            
     </table> 
               
- 
+ <form action="rechercheItineraire" method="post">
+     <div class="form-group row" style="display:none;">
+                         <div class="col-xs-6">
+                        <label for="idHistorique">idHistorique</label>
+                   
+                       
+                         <select  class="form-control" id="idHistorique" name="idHistorique">
+                            <?php
+                                            foreach ($lesHistoriques as $h) {
+                                           ?>
+                            <option value="<?php echo $h->ID_HISTORIQUE;?>"> <?php echo $h->ID_HISTORIQUE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                    </div>
+                    </div>
+                    
+     
+       
+<div class="form-group row" id="delete">
+               <div class="col-xs-2">
+               <input  type="submit" name="delete" value="Supprimer" class="btn btn-danger btn-block" />
+              
+           </div>
+</div>
+     
+ </form>
+ <?php 
+                
+                if($this->input->post('delete') !=''){
+                   
+                 $idHistorique = $this->input->post('idHistorique'); 
+                 $data = array(
+                     'ID_HISTORIQUE' => $idHistorique,
+                    
+                    );
+                 
+                   $this->db->delete('historique', array('ID_HISTORIQUE' => $idHistorique));
+                   header("refresh: 0;");
+                }
+                ?>  
         
         
         <br> <br>   
