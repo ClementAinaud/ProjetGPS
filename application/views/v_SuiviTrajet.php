@@ -439,7 +439,7 @@ levehiculeid
                         <label for="idVehicule">Id du vehicule</label>
                          <select  class="form-control" id="idVehicule" name="idVehicule">
                             <?php
-                                            foreach ($lesvehicules as $vehicule) {
+                                            foreach ($lesvehicules  as $vehicule) {
                                            ?>
                             <option value="<?php echo $vehicule->ID_VEHICULE;?>"> <?php echo $vehicule->ID_VEHICULE;?></option>   
                                                  
@@ -450,12 +450,13 @@ levehiculeid
                          </div>
      </div>
     
-    <div class="form-group row">
+    
+  <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="nomVehicule">Nom du proprietaire</label>
+                        <label for="nomVehicule">nom du vehicule</label>
                          <select  class="form-control" id="nomVehicule" name="nomVehicule">
                             <?php
-                                            foreach ($lesvehicules as $vehicule) {
+                                            foreach ($lesvehicules  as $vehicule) {
                                            ?>
                             <option value="<?php echo $vehicule->NOM_VEHICULE;?>"> <?php echo $vehicule->NOM_VEHICULE;?></option>   
                                                  
@@ -471,7 +472,7 @@ levehiculeid
                         <label for="typeCarburant">Type de carburant</label>
                          <select  class="form-control" id="typeCarburant" name="typeCarburant">
                             <?php
-                                            foreach ($lesvehicules as $vehicule) {
+                                            foreach ($lesvehicules  as $vehicule) {
                                            ?>
                             <option value="<?php echo $vehicule->TYPECARBURANT_VEHICULE;?>"> <?php echo $vehicule->TYPECARBURANT_VEHICULE;?></option>   
                                                  
@@ -487,7 +488,7 @@ levehiculeid
                         <label for="consomation">consomation</label>
                          <select  class="form-control" id="consomation" name="consomation">
                             <?php
-                                            foreach ($lesvehicules as $vehicule) {
+                                            foreach ($lesvehicules  as $vehicule) {
                                            ?>
                             <option value="<?php echo $vehicule->CONSOMATION_VEHICULE;?>"> <?php echo $vehicule->CONSOMATION_VEHICULE;?></option>   
                                                  
@@ -498,28 +499,14 @@ levehiculeid
                          </div>
      </div>
     
-     <div class="form-group row">
-                         <div class="col-xs-6">
-                        <label for="co2">Co2 vehicule</label>
-                         <select  class="form-control" id="co2" name="co2">
-                            <?php
-                                            foreach ($lesvehicules as $vehicule) {
-                                           ?>
-                            <option value="<?php echo $vehicule->CO2_VEHICULE;?>"> <?php echo $vehicule->CO2_VEHICULE;?></option>   
-                                                 
-                            <?php
-                                            } 
-                           ?>  
-                        </select>     
-                         </div>
-     </div>
+  
     
     <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="classe">classe</label>
                          <select  class="form-control" id="classe" name="classe">
                             <?php
-                                            foreach ($lesvehicules as $vehicule) {
+                                            foreach ($lesvehicules  as $vehicule) {
                                            ?>
                             <option value="<?php echo $vehicule->CLASSE_VEHICULE;?>"> <?php echo $vehicule->CLASSE_VEHICULE;?></option>   
                                                  
@@ -662,7 +649,23 @@ levehiculeid
                         </select>     
                     </div>
                          </div>
-     
+      
+         <div class="form-group row">
+                         <div class="col-xs-6">
+                        <label for="co2">Co2 vehicule</label>
+                         <select  class="form-control" id="co2" name="co2">
+                            <?php
+                                            foreach ($lesvehicules as $vehicule) {
+                                           ?>
+                            <option value="<?php echo $vehicule->CO2_VEHICULE;?>"> <?php echo $vehicule->CO2_VEHICULE;?></option>   
+                                                 
+                            <?php
+                                            } 
+                           ?>  
+                        </select>     
+                         </div>
+     </div>
+  
       <input type="submit" name="insert"  class="btn btn-info">
 
     
@@ -694,11 +697,12 @@ levehiculeid
                    $station = $this->input->post('station');
                    $payant = $this->input->post('payant');
                    $radar = $this->input->post('radar');
-                   $nomVehicule->input->post('nom');
-                   $typeCarburant->input->post('typeCarburant');
-                   $consomation->input->post('consomation');
-                   $co2->input->post('co2');
-                   $classe->input->post('classe');
+                   $idVehicule = $this->input->post('idVehicule');
+                   $nomVehicule->input->post('nomVehicule');
+          //         $typeCarburant->input->post('typeCarburant');
+            //       $consomation->input->post('consomation');
+                //   $co2->input->post('co2');
+             //      $classe->input->post('classe');
                    
                 
                    
@@ -714,13 +718,14 @@ levehiculeid
                      'TOURISTIQUE_ETAPE' => $touristique, 
                      'PAYANT_ETAPE'=>$payant,
                      'STATIONSERVICE_ETAPE'=>$station,  
-                     'RADAR_ETAPE' =>  $radar,
-                      'NOM_ETAPE'=> $nomVehicule,
-                       'TYPECARBURANT_ETAPE' =>$typeCarburant,
-                       'CONSOMATION_ETAPE' =>$consomation,
-                       'CO2_ETAPE'=>$co2,
-                       'CLASSE_ETAPE'=>$classe,
-                      
+                     'RADAR_ETAPE' =>  $radar, 
+                     'IDVEHICULE_ETAPE'=> $idVehicule,
+                     'NOM_ETAPE' => $nomVehicule, 
+      //               'TYPECARBURANT_ETAPE' =>$typeCarburant,
+    //                 'CONSOMATION_ETAPE' =>$consomation,
+               //        'CO2_ETAPE'=>$co2,
+              //        'CLASSE_ETAPE'=>$classe,
+                     
                        
                       
                    );
@@ -740,11 +745,11 @@ levehiculeid
                    $station = $this->input->post('station');
                    $payant = $this->input->post('payant');
                    $radar = $this->input->post('radar');
-                   $nomVehicule->input->post('nomVehicule');
-                   $typeCarburant->input->post('typeCarburant');
-                   $consomation->input->post('consomation');
-                   $co2->input->post('co2');
-                   $classe->input->post('classe');
+ //                  $nomVehicule->input->post('nomVehicule');
+//                   $typeCarburant->input->post('typeCarburant');
+//                   $consomation->input->post('consomation');
+//                   $co2->input->post('co2');
+//                   $classe->input->post('classe');
                    
                    
                    
@@ -762,11 +767,11 @@ levehiculeid
                      'RADAR_HISTORIQUE' =>$radar,
                      'PAYANT_HISTORIQUE' =>$payant,
                      'STATIONSERVICE_HISTORIQUE' =>$station,  
-                     'NOM_HISTORIQUE'=> $nomVehicule,
-                     'TYPECARBURANT_HISTORIQUE' =>$typeCarburant,
-                     'CONSOMATION_HISTORIQUE' =>$consomation,
-                     'CO2_HISTORIQUE'=>$co2,
-                     'CLASSE_HISTORIQUE'=>$classe,  
+//                     'NOM_HISTORIQUE'=> $nomVehicule,
+//                     'TYPECARBURANT_HISTORIQUE' =>$typeCarburant,
+//                     'CONSOMATION_HISTORIQUE' =>$consomation,
+//                     'CO2_HISTORIQUE'=>$co2,
+//                     'CLASSE_HISTORIQUE'=>$classe,  
                            
                      
                        
