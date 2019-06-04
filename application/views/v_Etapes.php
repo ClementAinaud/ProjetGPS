@@ -66,7 +66,7 @@ and open the template in the editor.
            
     </table> 
               
- <form action="rechercheItineraire" method="post">
+ <form action="" method="post">
      <div class="form-group row" style="display:none;">
                          <div class="col-xs-6">
                         <label for="idEtape">idEtape</label>

@@ -5,9 +5,12 @@
 <title>Registration form</title>
 </head>
  
-<body>
-    
+<body> 
+  
+    <h1>Crétation d'un nouveau véhicule</h1>
+    <br> <br>
     <div class="col-sm-6"> 
+          
  <form method="post">
  <table width="600" border="1" cellspacing="5" cellpadding="5">
   <tr>
@@ -31,14 +34,14 @@
     <td width="329"><input type="text" name="CLASSE_VEHICULE"/></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><input type="submit" name="insert" value="Save Data"/></td>
+    <td colspan="2" align="center"><input type="submit" name="insert" value="Enregistrer"/></td>
   </tr>
 </table>
  
  </form>
-    </div>
+  
     
-    <div class="col-sm-6"> 
+   
         <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
@@ -70,26 +73,10 @@
         ?>
            
     </table> 
-        
-    </div>
-    <div class="col-sm-6"> 
- <form method="post">
- <table width="600" border="1" cellspacing="5" cellpadding="5">
-  <tr>
-    <td width="230">Entrer nom route </td>
-    <td width="329"><input id ="NOM_ROUTE"type="text" name="NOM_ROUTE"/></td>
-  </tr>
-  <tr>
-    <td>Entrer le type de route </td>
-    <td><input id ="TYPE_ROUTE" type="text" name="TYPE_ROUTE"/></td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center"><input type="submit" name="insert2" value="Save Data"/></td>
-  </tr>
-</table>
- 
- </form>
-    </div>
+        </div>  
+    
+    <h1>Creation d'une nouvelle route</h1>
+   
     <div class="col-sm-6"> 
         <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
@@ -117,6 +104,24 @@
            
     </table> 
         
+   
+    
+ <form method="post">
+ <table width="600" border="1" cellspacing="5" cellpadding="5">
+  <tr>
+    <td width="230">Entrer nom route </td>
+    <td width="329"><input id ="NOM_ROUTE"type="text" name="NOM_ROUTE"/></td>
+  </tr>
+  <tr>
+    <td>Entrer le type de route </td>
+    <td><input id ="TYPE_ROUTE" type="text" name="TYPE_ROUTE"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="submit" name="insert2" value="Enregistrer"/></td>
+  </tr>
+</table>
+ 
+ </form>
     </div>
 </body>
 
