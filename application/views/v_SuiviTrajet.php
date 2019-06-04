@@ -10,17 +10,14 @@ $villeDepart=$_REQUEST['villeDepart'];
 $villeArrivee=$_REQUEST['villeArrivee'];
 $typeChemin=$_REQUEST['typeChemin'];
 $vehicule=$_REQUEST['vehicule'];
-echo "$villeDepart";
-echo "$radar";
-echo "$typeChemin";
-echo "$vehicule";
+
 
 ?><!DOCTYPE html>
 
 <?php
 $date = date("d-m-Y");
 $heure = date("H:i");
-Print("Nous sommes le $date et il est $heure");
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -37,7 +34,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://localhost/GSB_Final-master/CSS/CSS.css"> 
-         <!--<link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">-->
+
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         
@@ -57,9 +54,10 @@ and open the template in the editor.
     document.getElementById('Perdu').style.display='block';
     
   }
+  }
   $VILLEDEDEPART_TRONCON =(document.getElementById("myTable2").rows[1].cells.item(0).innerHTML);
   $Detail = $DOM->getElementsByTagName('td');
-}
+
   
 </script>
 
@@ -67,7 +65,7 @@ and open the template in the editor.
     <body>
        <form method="post">
         <h1>Le trajet a debuté , voici l'itinéraire </h1>
-        <br>   <br>   <br>   <br>   <br>   <br>
+        <br>   <br>  
          <!--<h1>Tableau des visiteurs</h1>-->
 
          <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -101,12 +99,12 @@ and open the template in the editor.
          
          ?>
           </table>
-         ----
+      
     <table id="myTable2" class="table table-striped table-bordered" cellspacing="0" width="100%">
         
         <tr> 
             
-        <div id="ID_TRONCON" <th id="ID_TRONCON">troncon</th> </div>
+        <div id="ID_TRONCON" <th id="ID_TRONCON">Troncon selectionné</th> </div>
               <th id="VILLEDEDEPART_TRONCON">ville depart</th>
               <th id="VILLEDARRIVEE_TRONCON">ville arrivée</th>
               <th id="ID_TRONCON">Nombres de kilomètres</th>
@@ -191,16 +189,19 @@ and open the template in the editor.
         <div id="NomMach"></div>
   <div id="Itype">
       <div class="radio">
-          <label> <input name="Type" id="arrivee" type="radio" value="arrivee" checked="checked"  onclick="Smachine();" />Fin du trajet </label> <br>
+          <label> <input name="Type" id="arrivee" type="radio" value="arrivee" checked="checked"  onclick="Smachine();" />Continuer a naviguer </label> <br>
       </div>
-      <div class="radio">
-                      <a href="rechercheItineraire"><input type="button" class="btn btn-info" name="insert " value="CONTINUER"/></a>  
-
+       <div class="col-xs-6">
+     <h1>Echec</h1> <input name="Type" id="perdu" type="radio" value="perdu"  onclick="Smachine();" />
     </div>
   </div>
-  <div id="Arrivee" style="display:none;">
+        
+        
+        
+        
+  <div id="Arrivee" >
       <h1>Felicitaion vous etes arrivés a destination </h1>
-      <a href="../Ctrl_Accueil/etapes"><input type="button" class="btn btn-info" name="recherche " value="recherche"/></a>  
+      <a href="../Ctrl_Accueil/etapes"><input type="button" class="btn btn-info" name="recherche " value="FIN DU TRAJET"/></a>  
   </div>
         
     <div id="Perdu" style="display:none;">
@@ -221,7 +222,7 @@ and open the template in the editor.
       
       
     
-          
+           <a href="rechercheItineraire"><input type="button" class="btn btn-info" name="insert " value="CONTINUER"/></a>  
             <td><input type="submit" name="insert" value="Save Data"/></td>
 
    

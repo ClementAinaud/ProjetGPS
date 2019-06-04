@@ -35,7 +35,7 @@ and open the template in the editor.
               <th>Id du Troncon</th>
               <th>Ville d'arrivée</th>
               <th>Ville de depart </th>
-              <th>Longueurde l' etape</th>
+              <th>Longueur de l' etape</th>
                <th>Id du vehicule</th>
                <th>consomation</th>
                  <th>Co2 émis</th>
@@ -52,12 +52,12 @@ and open the template in the editor.
             echo"<td>".$etape->ID_TRONCON."</td>";
             echo"<td>".$etape->VILLEDEDEPART_ETAPE."</td>";
             echo"<td>".$etape->VILLEDARRIVEE_ETAPE."</td>";
-            echo"<td>".$etape->LONGUEUR_ETAPE."</td>";
+            echo"<td>".$etape->LONGUEUR_ETAPE."km</td>";
             echo"<td>".$etape->IDVEHICULE_ETAPE."</td>";
             echo"<td>".$etape->CONSOMATION_ETAPE."</td>";
              echo"<td>".$etape->CO2_ETAPE."</td>";
             
-     
+            
             
             
             echo "</tr>";
@@ -114,5 +114,45 @@ and open the template in the editor.
            
      </div> 
  </div>
+        
+        
+
+        
+        
+
+    
+        
+      
+            
+              
+        
+               
+                 
+           
+        
+       
+        <?php 
+        
+        foreach($lesSommes as $s){
+            
+            echo $s;
+
+        
+        }
+          
+        foreach($lesSommesConso as $c){
+            
+            echo $c;
+
+        
+        }
+        
+     
+        ?>
+        
+       
+           
+  
+       
     </body>
 </html>

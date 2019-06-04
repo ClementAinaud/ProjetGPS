@@ -28,13 +28,13 @@ and open the template in the editor.
     </head>
     <body>
         <div class="col-sm-6">
-        <h3>Consulter historique ( menu déroulant peut-être)</h3>
+       
         <br><br>
         
         
         <form method="GET" action="suiviTrajet">
   
-    <h1>Etape 1( choisir villes depart/arrivee et vérification des villes choisies </h1>
+    <h1>Etape 1 : Choisir les villes de depart et d'arrivée </h1>
      
   
             <div class="form-group row">
@@ -58,7 +58,7 @@ and open the template in the editor.
     
  
 ?>
-    <h2>zzz</h2>   
+    
   <?php
         {
  
@@ -87,7 +87,7 @@ and open the template in the editor.
                     </div>
     
       
-    <h1>Etape 2 choisir le véhicule</h1>
+    <h1>Etape 2  : Choisir un conducteur</h1>
      <div class="form-group row">
                          <div class="col-xs-6">
                         <label for="vehicule">vehicule</label>
@@ -102,12 +102,13 @@ and open the template in the editor.
                            ?>  
                         </select>     
                     </div>
+     </div>
     
     
     <h1>Etape 3 choisir les préférences </h1>
      <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="TypeChemin">Type du chemin (menu déroulant court/rapide?</label>
+                        <label for="TypeChemin">Type du chemin </label>
                          <select  class="form-control" id="typeChemin" name="typeChemin">
                             <?php
                                             foreach ($lesPreferences as $preference) {
@@ -138,7 +139,7 @@ and open the template in the editor.
    
    <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="station">station</label>
+                        <label for="station">Présence d'une sation service</label>
                         <select  class="form-control" id="station" name="station">
                             <?php
                                             foreach ($lesPreferences as $preference) {
@@ -153,7 +154,7 @@ and open the template in the editor.
                     </div>
     <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="payant">Payant  ( menu déroulant oui/non?)</label>
+                        <label for="payant">Le chemin est-il payant </label>
                        <select  class="form-control" id="payant" name="payant">
                             <?php
                                             foreach ($lesPreferences as $preference) {
@@ -168,7 +169,7 @@ and open the template in the editor.
                     </div>
        <div class="form-group row">
                          <div class="col-xs-6">
-                        <label for="radar">Radar  ( menu déroulant oui/non?)</label>
+                        <label for="radar">Présence d'un Radar</label>
                        <select  class="form-control" id="radar" name="radar">
                             <?php
                                             foreach ($lesPreferences as $preference) {
