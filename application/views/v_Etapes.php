@@ -114,5 +114,9 @@ and open the template in the editor.
            
      </div> 
  </div>
+         <?php
+             foreach($LesLongueurs[0] as $value){
+    echo $value. "<br>";
+}   ?>
     </body>
 </html>

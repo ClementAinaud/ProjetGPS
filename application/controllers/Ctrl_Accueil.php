@@ -87,7 +87,7 @@ class Ctrl_Accueil extends CI_Controller{
   public   function etapes(){
       $this->load->model('Model_Etapes');
       $data['lesEtapes'] = $this->Model_Etapes->getEtapes();
-     
+     $data['LesLongueurs'] = $this->Model_Etapes->getLongueur();
       $this->load->view("v_Etapes",$data);
       
       
@@ -96,6 +96,7 @@ class Ctrl_Accueil extends CI_Controller{
    public function historique(){
       $this->load->model('Model_Historique');
       $data['lesHistoriques'] = $this->Model_Historique->getHistorique();
+      $data['LesLongueurs'] = $this->Model_Historique->getLongueur();
       $this->load->view("v_Historique",$data);
     }
     function ajoutvehicule(){

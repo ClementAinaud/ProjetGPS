@@ -57,8 +57,12 @@ and open the template in the editor.
     document.getElementById('Perdu').style.display='block';
     
   }
-  $VILLEDEDEPART_TRONCON =(document.getElementById("myTable2").rows[1].cells.item(0).innerHTML);
-  $Detail = $DOM->getElementsByTagName('td');
+  if(document.getElementById('insert').checked) {
+    
+    document.getElementById('Arrivee').style.display='none';
+    document.getElementById('Confirme').style.display='block';
+    
+  }
 }
   
 </script>
@@ -187,7 +191,7 @@ and open the template in the editor.
         
 
        
-        
+<!--        
         <div id="NomMach"></div>
   <div id="Itype">
       <div class="radio">
@@ -215,19 +219,12 @@ and open the template in the editor.
     
                     </div>
            
-                    </div>
-       
-                    
+                    </div>-->
+       <a href="rechercheItineraire">  <input type="submit" type="button"  name="insert" value="Je continue"/> </a>
+        <a href="etapes">  <input type="submit" type ="button"  name="insert" value="Je suis arrivée " /> </a>
       
-      
-    
-          
-            <td><input type="submit" name="insert" value="Save Data"/></td>
-
+</form>
    
-      
-        </form>
-            
             
            
             
@@ -254,28 +251,9 @@ and open the template in the editor.
                      'IDVEHICULE_ETAPE'=> $vehicule,
                        'CONSOMATION_ETAPE '=>$CONSOMATION_ETAPE,
                        'CO2_ETAPE'=>$CO2_ETAPE,
-                     
-                       
-                      
-                   );
-                   $this->db->insert('etape',$data);
-                  
-                }
-                
-                ?>
-          <?php
-                if($this->input->post('insert') !=''){
-                   $idTroncon = $this->input->post('ID_TRONCON');
-                   $villeDepart = $this->input->post('VILLEDEDEPART_TRONCON'); 
-                   $villeArrivee = $this->input->post('VILLEDARRIVEE_TRONCON');
-                   $longueurTroncon = $this->input->post('LONGUEUR_TRONCON');
-                   $conso = $this->input->post('conso2');
-                   $co2 = $this->input->post ('co22');
-                   
-                   
-                  
-                   
-                   $data = array(
+                      );
+                        
+                        $data1 = array(
                      'ID_TRONCON' => $ID_TRONCON,
                      'DATE_HISTORIQUE' =>$date,  
                      'HEURE_HISTORIQUE'=>$heure,  
@@ -286,14 +264,51 @@ and open the template in the editor.
                      'CONSOMATION_HISTORIQUE' =>$CONSOMATION_ETAPE,
                      'CO2_HISTORIQUE'=>$CO2_ETAPE,
                            
-                     
-                       
                       
-                   );
-                   $this->db->insert('historique',$data);
                   
+                   );
+                   $this->db->insert('etape',$data);
+                  $this->db->insert('historique',$data1);
+                  
+                       
                 }
-                ?>  
+                
+                ?>
+          //<?php
+          if($this->input->post('insert') == "Je continue"){
+                        header("Location: rechercheItineraire");
+                  }
+                  else if($this->input->post('insert') == 'Je suis arrivée '){
+                        header("Location: etapes");
+                  }
+//                if($this->input->post('insert') !=''){
+//                   $idTroncon = $this->input->post('ID_TRONCON');
+//                   $villeDepart = $this->input->post('VILLEDEDEPART_TRONCON'); 
+//                   $villeArrivee = $this->input->post('VILLEDARRIVEE_TRONCON');
+//                   $longueurTroncon = $this->input->post('LONGUEUR_TRONCON');
+//                   $conso = $this->input->post('conso2');
+//                   $co2 = $this->input->post ('co22');
+//                   
+//                   
+//                  
+//                   
+//                   $data = array(
+//                     'ID_TRONCON' => $ID_TRONCON,
+//                     'DATE_HISTORIQUE' =>$date,  
+//                     'HEURE_HISTORIQUE'=>$heure,  
+//                     'VILLEDEDEPART_HISTORIQUE' =>$VILLEDEDEPART_TRONCON,
+//                     'VILLEARRIVEE_HISTORIQUE'=>$VILLEDARRIVEE_TRONCON,
+//                     'LONGUEUR_HISTORIQUE' => $LONGUEUR_ETAPE,
+//                       'ID_VEHICULE'=> $vehicule,
+//                     'CONSOMATION_HISTORIQUE' =>$CONSOMATION_ETAPE,
+//                     'CO2_HISTORIQUE'=>$CO2_ETAPE,
+//                           
+//                      
+//                   );
+//                   $this->db->insert('historique',$data);
+//                  header("Location: etapes");
+//                }
+//                ?>  
             
             
         
@@ -307,19 +322,9 @@ and open the template in the editor.
         
  </div>
         
-<table id=maTable>
-<tr>
-<th>Identifiant</th>
-<th>Resultat</th>
-</tr>
-<tr>
-<td>123</td>
-<td>55</td>
-</tr>
-</table>
-        
-        
-        
+       <?php
+        var_dump($this->input->post('insert'));
+            ?>
         
         
         
