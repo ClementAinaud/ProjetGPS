@@ -20,7 +20,7 @@ and open the template in the editor.
   
     </head>
     <body>
-        <div>TODO write content</div>
+        
             <div class="col-sm-6">
         <div id="partieGauche"> 
 <!--        <div style="overflow:auto;height:570px;">-->
@@ -114,9 +114,38 @@ and open the template in the editor.
            
      </div> 
  </div>
+        
+        
+        <div id="partieGauche"> 
+<!--        <div style="overflow:auto;height:570px;">-->
+
+ <h1>Totaux</h1>
+
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        
+        <tr> 
+            
+              <th>Longeurs total en Km </th>
+          
          <?php
              foreach($LesLongueurs[0] as $value){
-    echo $value. "<br>";
+                  echo"<td>".$value."km</td>";
+    
 }   ?>
+    </table>
+ 
+  <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="50%">
+        
+        <tr> 
+            
+              <th>Consomation totale</th>
+          
+         <?php
+             foreach($lesConsos[0] as $v){
+                  echo"<td>".$v."</td>";
+    
+}   ?>
+    </table>
+        </div>
     </body>
 </html>

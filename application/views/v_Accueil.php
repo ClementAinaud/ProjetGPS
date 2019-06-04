@@ -32,7 +32,7 @@
                     <h2 id="titleMed" size="6pt" type="bold" value="Gestion des médicaments">Recherche d'un itinéraire</h2> 
                       
                     <br> <br> <br>
-                  <a href="Ctrl_Accueil/rechercheItineraire"><input type="button" class="btn btn-info" name="recherche " value="recherche"/></a>  
+                    <a href="index.php/Ctrl_Accueil/rechercheItineraire"><input type="button" class="btn btn-info" name="recherche " value="recherche"/></a>  
                 </div>
         
           
@@ -43,7 +43,7 @@
                 <h2 id="titleComp" size="6pt" type="bold" value="Gestion des composants">Creation d'un nouveau vehicule</h2> 
                
             <br> <br> <br>
-          <a href="Ctrl_Accueil/ajoutvehicule"><input type="button" class="btn btn-info" name="recherche " value="parametrages"/></a>  
+          <a href="index.php/Ctrl_Accueil/ajoutvehicule"><input type="button" class="btn btn-info" name="recherche " value="parametrages"/></a>  
             </div>
                 
           <div class="col-sm-3" >
@@ -52,7 +52,7 @@
                 <h2 id="titleVis" size="6pt" type="bold" value="Gestion des médicaments">Modification d'autres parametres</h2> 
                     
                 <br> <br>
-                <a href="Ctrl_Accueil/parametres"><input type="button" class="btn btn-info" name="recherche " value="parametrages"/></a> 
+                <a href="index.php/Ctrl_Accueil/parametres"><input type="button" class="btn btn-info" name="recherche " value="parametrages"/></a> 
                 
             </div>        
                 
@@ -64,7 +64,7 @@
                 
                 <br> <br> <br> 
 
-           <a href="Ctrl_Accueil/historique"><input type="button" class="btn btn-info" name="recherche " value="historique"/></a> 
+           <a href="index.php/Ctrl_Accueil/historique"><input type="button" class="btn btn-info" name="recherche " value="historique"/></a> 
             </div>
         </div>
     </div><!--div row -->

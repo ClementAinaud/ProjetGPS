@@ -88,6 +88,7 @@ class Ctrl_Accueil extends CI_Controller{
       $this->load->model('Model_Etapes');
       $data['lesEtapes'] = $this->Model_Etapes->getEtapes();
      $data['LesLongueurs'] = $this->Model_Etapes->getLongueur();
+      $data['lesConsos'] = $this->Model_Etapes->getConso();
       $this->load->view("v_Etapes",$data);
       
       

@@ -10,4 +10,9 @@ class Model_Etapes extends CI_Model{
         $sql = $this->db->query('SELECT SUM(LONGUEUR_ETAPE) FROM `etape`');
                 return $sql->result();
     }
+    
+    public function getConso(){
+         $sql = $this->db->query('SELECT SUM(CONSOMATION_ETAPE) FROM `etape`');
+         return $sql->result();
+    }
 }
