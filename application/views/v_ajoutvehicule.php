@@ -72,10 +72,71 @@
     </table> 
         
     </div>
+    <div class="col-sm-6"> 
+ <form method="post">
+ <table width="600" border="1" cellspacing="5" cellpadding="5">
+  <tr>
+    <td width="230">Entrer nom route </td>
+    <td width="329"><input id ="NOM_ROUTE"type="text" name="NOM_ROUTE"/></td>
+  </tr>
+  <tr>
+    <td>Entrer le type de route </td>
+    <td><input id ="TYPE_ROUTE" type="text" name="TYPE_ROUTE"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="submit" name="insert2" value="Save Data"/></td>
+  </tr>
+</table>
+ 
+ </form>
+    </div>
+    <div class="col-sm-6"> 
+        <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        
+        <tr> 
+              <th>ID route</th>
+              <th>Nom route</th>
+              <th>type de route</th>
+           
+        </tr>    
+       
+        <?php 
+        
+        foreach($leRoute as $vehicule){
+            echo "<tr>";
+           
+            echo"<td>".$vehicule->ID_ROUTE."</td>";
+            echo"<td>".$vehicule->NOM_ROUTE."</td>";
+            echo"<td>".$vehicule->TYPE_ROUTE."</td>";
+     
+            
+            
+            echo "</tr>";
+        }
+        ?>
+           
+    </table> 
+        
+    </div>
 </body>
 
 
                 <?php 
+                if($this->input->post('insert2') !=''){
+                   $NOM_ROUTE  = $this->input->post('NOM_ROUTE'); 
+                   $TYPE_ROUTE  = $this->input->post('TYPE_ROUTE');
+                  
+                   
+                   $data = array(
+                     
+                     'NOM_ROUTE' => $NOM_ROUTE,
+                     'TYPE_ROUTE' =>$TYPE_ROUTE,
+                       
+                      
+                   );
+                   $this->db->insert('route',$data);
+                   header("refresh: 0;");
+                }
                 
                 if($this->input->post('insert') !=''){
                    $NOM_VEHICULE  = $this->input->post('NOM_VEHICULE'); 

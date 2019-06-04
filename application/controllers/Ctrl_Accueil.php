@@ -101,7 +101,10 @@ class Ctrl_Accueil extends CI_Controller{
     }
     function ajoutvehicule(){
         $this->load->model('Model_Vehicule');
+                $this->load->model('Model_Route');
+
        $data['leVehicule'] = $this->Model_Vehicule->getVehicule();
+       $data['leRoute'] = $this->Model_Route->getRoute();
         $this->load->view("v_ajoutvehicule",$data);
     }
 }
